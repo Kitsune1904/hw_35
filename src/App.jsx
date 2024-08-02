@@ -15,7 +15,6 @@ function App() {
     }
     setInputVal("");
   };
-  console.log(notesArr)
 
   const inputHandler = useCallback((event) => {
     const inputNote = event.target.value;
