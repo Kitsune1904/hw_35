@@ -8,10 +8,10 @@ function App() {
   const [inputVal, setInputVal] = useState("");
 
   const clickHandler = () => {
-    if (inputVal != '') {
+    if (inputVal != "") {
       setNotesArr([...notesArr, inputVal]);
     } else {
-      alert('Fild can\`t be empty')
+      alert("Fild can`t be empty");
     }
     setInputVal("");
   };
@@ -21,16 +21,14 @@ function App() {
     setInputVal(inputNote);
   }, []);
 
-/*   const deleteNote = useCallback((event) => {
-    const deletedNote = Number(event.target.getAttribute('data-index'));
-    notesArr.splice(deletedNote, 1);
-    setNotesArr([...notesArr])
-  }, [notesArr]) */
-
-  const deleteNote = useCallback((index) => {
-    notesArr.splice(index, 1);
-    setNotesArr([...notesArr])
-  }, [notesArr])
+  const deleteNote = useCallback(
+    (event) => {
+      const deletedNote = Number(event.target.getAttribute("data-index"));
+      notesArr.splice(deletedNote, 1);
+      setNotesArr([...notesArr]);
+    },
+    [inputVal]
+  );
 
   return (
     <>
@@ -44,12 +42,20 @@ function App() {
         <button onClick={clickHandler}>Add note</button>
       </div>
       <div className="notesListHolder">
-        {notesArr.length == 0 ? 
-        <p>Notes list is empty</p> :
-        <NoteList>
-          {notesArr.map((note, index)=> <NoteItem key={index} note={note} delete={(index) => deleteNote(index)}/>)}
-        </NoteList>
-        }  
+        {notesArr.length == 0 ? (
+          <p>Notes list is empty</p>
+        ) : (
+          <NoteList>
+            {notesArr.map((note, index) => (
+              <NoteItem
+                key={index}
+                note={note}
+                id={index}
+                delete={(event) => deleteNote(event)}
+              />
+            ))}
+          </NoteList>
+        )}
       </div>
     </>
   );

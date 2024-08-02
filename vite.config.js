@@ -9,6 +9,7 @@ export default defineConfig({
     outDir: path.join(__dirname, "docs"),
   },
   plugins: [react()],
+  base: ''
 })
 
 

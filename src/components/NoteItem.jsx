@@ -1,19 +1,10 @@
-/* const NoteItem = (props) => {
+const NoteItem = (props) => {
+    console.log(props.id)
   return (
-    <li data-index={props.id}>
-      {props.note} 
-      <button onClick={props.delete}>Delete note</button>
+    <li><span>{props.note}</span>
+      <button data-index={props.id} onClick={props.delete}>Delete note</button>
     </li>
   );
-}; */
-
-const NoteItem = (props) => {
-    return (
-      <li>
-        {props.note} 
-        <button onClick={props.delete}>Delete note</button>
-      </li>
-    );
-  };
+};
 
 export default NoteItem;
