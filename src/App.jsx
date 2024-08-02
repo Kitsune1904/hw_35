@@ -21,9 +21,14 @@ function App() {
     setInputVal(inputNote);
   }, []);
 
-  const deleteNote = useCallback((event) => {
+/*   const deleteNote = useCallback((event) => {
     const deletedNote = Number(event.target.getAttribute('data-index'));
     notesArr.splice(deletedNote, 1);
+    setNotesArr([...notesArr])
+  }, [notesArr]) */
+
+  const deleteNote = useCallback((index) => {
+    notesArr.splice(index, 1);
     setNotesArr([...notesArr])
   }, [notesArr])
 
@@ -42,7 +47,7 @@ function App() {
         {notesArr.length == 0 ? 
         <p>Notes list is empty</p> :
         <NoteList>
-          {notesArr.map((note, index)=> <NoteItem key={index} id={index} note={note} delete={(event) => deleteNote(event)}/>)}
+          {notesArr.map((note, index)=> <NoteItem key={index} note={note} delete={(index) => deleteNote(index)}/>)}
         </NoteList>
         }  
       </div>
